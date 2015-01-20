@@ -1,0 +1,20 @@
+a {
+  text-decoration: none; }
+
+.grid-buttons .col {
+  padding: 10px; }
+.grid-buttons a {
+  display: block;
+  width: 64px;
+  height: 64px;
+  line-height: 64px;
+  text-align: center;
+  background-color: #0077dd;
+  border-radius: 5px;
+  color: white;
+  margin: 0 auto; }
+  .grid-buttons a em {
+    font-size: 36px;
+    margin-right: 3px; }
+  .grid-buttons a span {
+    font-size: 16px; }
