@@ -10,7 +10,6 @@ a
         height: 64px
         line-height: 64px
         text-align: center
-        background-color: #07d
         border-radius: 5px
         color: #fff
         margin: 0 auto
@@ -19,3 +18,55 @@ a
             margin-right: 3px
         span
             font-size: 16px
+
+.progress-bar
+    height: 18px
+    line-height: 18px
+    font-size: 12px
+    text-align: right
+    position: relative
+    .progress
+        position: absolute
+        top: 0
+        left: 0
+        height: 100%
+    span
+        margin-right: 5px
+
+.test
+    h4
+        line-height: 1.6
+    .count
+        display: inline-block
+        font-size: 12px
+        height: 20px
+        line-height: 20px
+        color: #07d
+        border: solid 1px #07d
+        border-radius: 3px
+        padding: 0 3px
+    img
+        display: block
+        margin: 20px auto
+        max-height: 200px
+    ul
+        margin-bottom: 20px
+        li
+            position: relative
+            margin-top: 15px
+            font-size: 16px
+            line-height: 1.6
+            em
+                position: absolute
+                display: block
+                top: 0
+                left: 0
+                width: 20px
+            span
+                display: block
+                margin-left: 30px
+                height: 100%
+            &.rightChoice
+                color: red
+                padding-bottom: 5px
+                border-bottom: solid 1px red

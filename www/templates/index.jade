@@ -1,15 +1,17 @@
-ion-view(title='首页')
+ion-view(title='火腿宝首页')
     ion-content.padding
+        h4.text-center 学习模式
+        hr
         .row.grid-buttons
             .col
-                a(href='#/study')
+                a.balanced-bg(href='#/study', ng-click='$data.clazz = "A"')
                     em A
                     span 类
             .col
-                a(href='#/study')
+                a.positive-bg(href='#/study', ng-click='$data.clazz = "B"')
                     em B
                     span 类
             .col
-                a(href='#/study')
+                a.royal-bg(href='#/study', ng-click='$data.clazz = "C"')
                     em C
                     span 类

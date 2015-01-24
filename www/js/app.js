@@ -1,13 +1,4 @@
 angular
-    .module('controllers', []);
-
-angular
-    .module('services', []);
-
-angular
-    .module('filters', []);
-
-angular
     .module('ham-exam-helper', ['ionic', 'controllers', 'services', 'filters'])
     .run(function ($ionicPlatform) {
         $ionicPlatform.ready(function () {
@@ -29,12 +20,14 @@ angular
 
             .state('index', {
                 url: '/',
-                templateUrl: 'templates/index.html'
+                templateUrl: 'templates/index.html',
+                controller: 'IndexController'
             })
 
             .state('study', {
                 url: '/study',
-                templateUrl: 'templates/study.html'
+                templateUrl: 'templates/study.html',
+                controller: 'StudyController'
             });
 
         // if none of the above states are matched, use this as the fallback

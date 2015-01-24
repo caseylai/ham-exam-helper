@@ -10,10 +10,13 @@ html
         script(src="lib/ionic/js/ionic.bundle.js")
         // cordova script (this will be a 404 during development)
         script(src="cordova.js")
-        // your app's js
+        script(src='js/utils.js')
+        script(src="js/controllers.js")
+        script(src="js/services.js")
+        script(src='js/filters.js')
         script(src="js/app.js")
     body(ng-app="ham-exam-helper", animation="slide-left-right-ios7")
-        ion-nav-bar.bar-stable.nav-title-slide-ios7.bar-positive
+        ion-nav-bar.bar-dark.nav-title-slide-ios7
             ion-nav-back-button.button-clear
                 | &nbsp;
                 i.ion-chevron-left
