@@ -4,7 +4,7 @@ ion-view(title='{{ $data.clazz + "类 / 学习模式" }}')
     ion-content
         .progress-bar.stable-bg
             .progress.positive-bg(ng-style='{width: getProgress()}')
-            span {{ testIds.length || 0 }}
+            span {{ testIds.length - testIndex }}
         .test.padding
             h4 {{ testIndex + ". " + test.q }}
             img(ng-src='img/tests/{{ test.p }}', ng-show='test.p')
