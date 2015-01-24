@@ -64,7 +64,7 @@ angular
             $scope.hiddenRightAnswer = true;
             $scope.test = $data.getTestById($scope.testIds[$scope.testIndex - 1]);
             $scope.rightChoice = $scope.test.choices[0];
-            _.shuffleArray($scope.test.choices);
+            $scope.shuffledChoices = _.shuffleArray([].concat($scope.test.choices));
             progress($scope.testIndex);
         }
 

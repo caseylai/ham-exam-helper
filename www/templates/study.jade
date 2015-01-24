@@ -10,7 +10,7 @@ ion-view(title='{{ $data.clazz + "类 / 学习模式" }}')
             img(ng-src='img/tests/{{ test.p }}', ng-show='test.p')
             hr
             ul(ng-init='letters = ["A", "B", "C", "D"]')
-                li(ng-repeat='c in test.choices', ng-class='{rightChoice: !hiddenRightAnswer && c == rightChoice}')
+                li(ng-repeat='c in shuffledChoices', ng-class='{rightChoice: !hiddenRightAnswer && c == rightChoice}')
                     em {{ letters[$index] }}
                     span {{ c }}
             button.button.button-block.button-positive(type='button', ng-show='hiddenRightAnswer', ng-click='markRightAnswer()') 看答案
