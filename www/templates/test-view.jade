@@ -1,0 +1,12 @@
+ion-view(title='查看题目')
+    ion-content
+        .test.padding(ng-init='test = $data.getTestById($data.selectedTestId)')
+            h4 {{ test.q }}
+            img(ng-src='img/tests/{{ test.p }}', ng-show='test.p')
+            hr
+            ul(ng-init='letters = ["A", "B", "C", "D", "E", "F"]')
+                li(ng-repeat='c in test.choices', ng-class='{green: $index === 0}')
+                    em {{ letters[$index] }}
+                    span
+                        | {{ c }}
+                        i.icon.ion-checkmark-round.green(ng-show='$index === 0')

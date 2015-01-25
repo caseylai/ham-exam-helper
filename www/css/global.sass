@@ -1,6 +1,11 @@
 a
     text-decoration: none
 
+.red
+    color: red !important
+.green
+    color: green !important
+
 .grid-buttons
     .col
         padding: 10px
@@ -54,19 +59,31 @@ a
         li
             position: relative
             margin-top: 15px
-            font-size: 16px
             line-height: 1.6
-            em
+            font-size: 16px
+            em, input
                 position: absolute
                 display: block
                 top: 0
                 left: 0
                 width: 20px
+            input
+                top: 4px
             span
                 display: block
                 margin-left: 30px
                 height: 100%
-            &.rightChoice
-                color: red
-                padding-bottom: 5px
-                border-bottom: solid 1px red
+                font-size: 16px
+                i
+                    margin-left: 10px
+
+.report-title
+    margin: 15px auto
+    text-align: center
+    span
+        margin: 0 15px
+
+.test-report
+    .item
+        i
+            margin-right: 10px

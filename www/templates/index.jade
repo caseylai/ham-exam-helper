@@ -1,6 +1,6 @@
-ion-view(title='火腿宝首页')
+ion-view(title='主菜单', hide-back-button='true', cache-view='false')
     ion-content.padding
-        h4.text-center 学习模式
+        h4.text-center 顺序学习
         hr
         .row.grid-buttons
             .col
@@ -13,5 +13,20 @@ ion-view(title='火腿宝首页')
                     span 类
             .col
                 a.royal-bg(href='#/study', ng-click='$data.clazz = "C"')
+                    em C
+                    span 类
+        h4.text-center 随机测验
+        hr
+        .row.grid-buttons
+            .col
+                a.balanced-bg(href='#/random-test', ng-click='$data.clazz = "A"')
+                    em A
+                    span 类
+            .col
+                a.positive-bg(href='#/random-test', ng-click='$data.clazz = "B"')
+                    em B
+                    span 类
+            .col
+                a.royal-bg(href='#/random-test', ng-click='$data.clazz = "C"')
                     em C
                     span 类

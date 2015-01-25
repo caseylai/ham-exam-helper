@@ -7,16 +7,19 @@ var _ = (function() {
     return {
 
         shuffleArray: function(array) {
-            for (var i = 0; i < array.length; i++) {
-                var a = random(array.length),
-                    b = random(array.length);
+            var clone = [].concat(array);
+            for (var i = 0; i < clone.length; i++) {
+                var a = random(clone.length),
+                    b = random(clone.length);
                 if (a != b) {
-                    var temp = array[a];
-                    array[a] = array[b];
-                    array[b] = temp;
+                    var temp = clone[a];
+                    clone[a] = clone[b];
+                    clone[b] = temp;
+                } else {
+                    i--;
                 }
             }
-            return array;
+            return clone;
         }
 
     };

@@ -1,0 +1,17 @@
+ion-view(title='{{ "测验模式" }}', cache-view='false')
+    ion-content
+        .progress-bar.stable-bg
+            .progress.positive-bg(ng-style='{width: getProgress()}')
+            span {{ randomTestIds.length - testIndex }}
+        .test.padding
+            h4 {{ testIndex + ". " + test.q }}
+            img(ng-src='img/tests/{{ test.p }}', ng-show='test.p')
+            hr
+            ul
+                li(ng-repeat='c in shuffledChoices')
+                    label
+                        input(type='radio', name='group-{{ testIndex }}', ng-model='models[testIndex]', ng-value='c')
+                        span(ng-class='{"green": models[testIndex] !== undefined && c == rightChoice, "red": models[testIndex] !== undefined && c == models[testIndex] && c != rightChoice}')
+                            | {{ c }}
+                            i.icon(ng-show='models[testIndex] !== undefined && (c == rightChoice || c == models[testIndex])', ng-class='{"ion-checkmark-round": c == rightChoice, "ion-close-round": c != rightChoice}')
+            button.button.button-block.button-positive(type='button', ng-hide='models[testIndex] === undefined || models[testIndex] == rightChoice', ng-click='nextTest()', ng-bind='testIndex == randomTestIds.length ? "完成测验" : "下一题"')

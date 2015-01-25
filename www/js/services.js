@@ -59,4 +59,17 @@ angular
 
         return $rootScope.appStorage;
 
+    }])
+
+    .factory('HintService', ['$ionicLoading', function($ionicLoading) {
+
+        return {
+            show: function(options) {
+                $ionicLoading.show(options);
+            },
+            hide: function() {
+                $ionicLoading.hide();
+            }
+        };
+
     }]);

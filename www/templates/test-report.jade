@@ -1,0 +1,11 @@
+ion-view(title='{{ "测验结果" }}', hide-back-button='true', cache-view='false')
+    ion-content
+        h4.report-title
+            span 正确：{{ passCount }}
+            span 错误：{{ $data.testResults.length - passCount }}
+        .list.test-report
+            a.item(href='#/test-view', ng-repeat='r in $data.testResults', ng-click='$data.selectedTestId = r.id', ng-class='{"green": r.pass, "red": !r.pass}')
+                i.icon(ng-class='{"ion-checkmark-round": r.pass, "ion-close-round": !r.pass}')
+                span {{ $data.getTestById(r.id).q }}
+        .padding
+            button.button.button-block.button-positive(type='button', ng-click='gotoHomePage()') 回主菜单

@@ -1,19 +1,23 @@
 angular
     .module('controllers', [])
 
-    .controller('IndexController', ['$scope', '$data', function($scope, $data) {
+    .controller('DataController', ['$scope', '$data', function($scope, $data) {
 
-        $scope.setConfig = function(clazz, style) {
-            $data.clazz = clazz;
-            $data.style = style;
-        };
+        $scope.$data = $data;
+
+    }])
+
+    .controller('IndexController', ['$scope', '$data', '$ionicHistory', function($scope, $data, $ionicHistory) {
+
+        $ionicHistory.clearHistory();
+
+        $scope.$data = $data;
 
     }])
 
     .controller('StudyController', ['$scope', '$data', '$localStorage', '$ionicPopup', function($scope, $data, $localStorage, $ionicPopup) {
 
         $scope.$data = $data;
-        $data.clazz = $data.clazz || 'A';
 
         $scope.testIds = $data.getClassTestIds($data.clazz);
         $scope.testIndex = progress();
@@ -64,7 +68,7 @@ angular
             $scope.hiddenRightAnswer = true;
             $scope.test = $data.getTestById($scope.testIds[$scope.testIndex - 1]);
             $scope.rightChoice = $scope.test.choices[0];
-            $scope.shuffledChoices = _.shuffleArray([].concat($scope.test.choices));
+            $scope.shuffledChoices = _.shuffleArray($scope.test.choices);
             progress($scope.testIndex);
         }
 
@@ -76,5 +80,76 @@ angular
                 return $localStorage[key];
             }
         }
+
+    }])
+
+    .controller('RandomTestController', ['$scope', '$data', '$localStorage', '$ionicPopup', '$timeout', '$state', function($scope, $data, $localStorage, $ionicPopup, $timeout, $state) {
+
+        $scope.$data = $data;
+
+        var testIds = $data.getClassTestIds($data.clazz);
+        var TESTS_COUNT = 30;
+
+        $scope.randomTestIds = _.shuffleArray(_.shuffleArray(testIds)).slice(0, TESTS_COUNT);
+        $scope.testIndex = 1;
+        $scope.models = [];
+        $scope.models[TESTS_COUNT] = undefined;
+        var results = [];
+
+        prepareTest();
+
+        $scope.$watch('models', function() {
+            var isSelected = $scope.models[$scope.testIndex] !== undefined;
+            if (isSelected) {
+                var pass = $scope.models[$scope.testIndex] == $scope.rightChoice;
+                if (pass) {
+                    $timeout($scope.nextTest, 1000);
+                } else {
+                    $localStorage.failedTests = $localStorage.failedTests || {};
+                    var failedCount = $localStorage.failedTests[$scope.test.id];
+                    $localStorage.failedTests[$scope.test.id] = failedCount ? failedCount + 1 : 1;
+                }
+                results.push({
+                    id: $scope.test.id,
+                    pass: pass
+                });
+            }
+        }, true);
+
+        $scope.getProgress = function() {
+            return ($scope.testIndex || 0) / $scope.randomTestIds.length * 100 + '%';
+        };
+
+        $scope.nextTest = function() {
+            if ($scope.testIndex <= $scope.randomTestIds.length - 1) {
+                $scope.testIndex++;
+                prepareTest();
+            } else {
+                $data.testResults = results;
+                $state.go('test-report');
+            }
+        };
+
+        function prepareTest() {
+            $scope.test = $data.getTestById($scope.randomTestIds[$scope.testIndex - 1]);
+            $scope.rightChoice = $scope.test.choices[0];
+            $scope.shuffledChoices = _.shuffleArray($scope.test.choices);
+        }
+
+    }])
+
+    .controller('TestReportController', ['$scope', '$data', '$state', '$ionicHistory', function($scope, $data, $state, $ionicHistory) {
+
+        $ionicHistory.clearHistory();
+
+        $scope.$data = $data;
+        $scope.passCount = 0;
+        angular.forEach($data.testResults, function(r) {
+            r.pass && $scope.passCount++;
+        });
+
+        $scope.gotoHomePage = function() {
+            $state.go('index');
+        };
 
     }]);
