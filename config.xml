@@ -2,7 +2,7 @@
 <widget id="com.caseylai.huotuibao" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>火腿宝</name>
   <description>
-    火腿宝供业余无线电爱好者进行考试学习、自测等用途。
+    火腿宝用于业余无线电操作证考试（A、B、C类）的学习和测验。题库来自于北京无线电协会的标准题库，能帮助使用者随时随地便携地学习业余无线电的基础知识，并快速通过考试。火腿宝由HAM个人爱好者开发，永久免费使用。
   </description>
   <author email="klayer@163.com">
       Casey Lai
