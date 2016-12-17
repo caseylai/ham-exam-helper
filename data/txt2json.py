@@ -3,16 +3,16 @@
 import json
 
 f = open('all-tests.txt', 'r')
-result = []
+result = {}
 test = None
 for line in f.readlines():
     line = line.strip()
     if len(line):
         if line.startswith('[I]'):
             if test is not None:
-                result.append(test)
+                result[test['id']] = test
             test = {
-                'no': line[3:],
+                'id': line[3:],
                 'choices': []
             }
         elif line.startswith('[Q]'):
@@ -21,6 +21,8 @@ for line in f.readlines():
             test['p'] = line[3:]
         else:
             test['choices'].append(line[3:])
-result.append(test)
-data = json.dumps(result, indent=4)
+
+result[test['id']] = test
+
+data = json.dumps(result, indent=4, ensure_ascii=False)
 open('all-tests.json', 'w').write(data)
